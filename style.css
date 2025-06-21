@@ -27,6 +27,9 @@ h2 {
     font-size: 1.6em;
     margin-top: 40px;
 }
+.h2-number {
+    margin-right: 5px; /* 番号と既存テキストの間にスペース */
+}
 h3 {
     font-size: 1.2em;
     border-bottom: 1px solid #ccc;
