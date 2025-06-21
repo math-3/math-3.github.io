@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>非同次線形漸化式の解き方</title>
@@ -14,144 +14,161 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-<body>
-
-<div class="container">
-    <h1>漸化式『 $a_1=1, a_{n+1}=2a_n+n^2$ 』の解き方</h1>
+  </head>
+  <body>
+    <div class="container">
+        <h1>漸化式『 $a_1=1, a_{n+1}=2a_n+n^2$ 』の解き方</h1>
+        
+        <p>
+            このページでは、右辺に $n$ の式が含まれる非同次線形漸化式の代表的な問題である $a_1=1, a_{n+1}=2a_n+n^2$ の一般項 $a_n$ を求める方法を、ステップバイステップで解説します。
+        </p>
     
-    <p>
-        このページでは、右辺に $n$ の式が含まれる非同次線形漸化式の代表的な問題である $a_1=1, a_{n+1}=2a_n+n^2$ の一般項 $a_n$ を求める方法を、ステップバイステップで解説します。
-    </p>
-
-    <h2>1. 問題の確認</h2>
-    <p>まず、解くべき漸化式を確認します。</p>
-    <div class="equation-box">
-        $$ a_1 = 1 $$
-        $$ a_{n+1} = 2a_n + n^2 $$
+        <h2>1. 問題の確認</h2>
+        <p>まず、解くべき漸化式を確認します。</p>
+        <div class="equation-box">
+            $$ a_1 = 1 $$
+            $$ a_{n+1} = 2a_n + n^2 $$
+        </div>
+        <p>
+            この式は、$a_{n+1} = p a_n + f(n)$ の形をしています。ここで $p=2$、$f(n)=n^2$ です。$f(n)$ が $n$ の2次式である点がポイントです。
+        </p>
+    
+        <h2>2. 解法の基本方針</h2>
+        <p>
+            このタイプの漸化式は、うまい変形によって、基本的な「等比数列型」の漸化式 $c_{n+1} = r \cdot c_n$ に持ち込むのが定石です。
+        </p>
+        <p>
+            $a_{n+1} = 2a_n + n^2$ の右辺の $n^2$ が厄介なので、これを打ち消すような補助的な数列を考えます。$f(n)=n^2$ が $n$ の2次式なので、補助的な数列として、$n$ の2次式 $b_n = An^2+Bn+C$ を仮定し、$a_{n+1} - b_{n+1} = 2(a_n - b_n)$ という形を目指します。
+        </p>
+    
+        <h2>3. 補助的な数列 $b_n$ の決定</h2>
+        <p>
+            まず、$a_{n+1} = 2a_n + n^2$ と、目標の形 $a_{n+1} - b_{n+1} = 2(a_n - b_n)$ すなわち $a_{n+1} = 2a_n - 2b_n + b_{n+1}$ を比較します。
+        </p>
+        <p>
+            両方の式の $a_{n+1}$ と $2a_n$ は共通なので、残りの部分が等しくなればよいことがわかります。
+        </p>
+        <div class="equation-box">
+            $$ n^2 = -2b_n + b_{n+1} $$
+        </div>
+        <p>
+            ここに、$b_n = An^2+Bn+C$ を代入して、係数 $A, B, C$ を求めます。
+        </p>
+        <p>
+            $b_{n+1} = A(n+1)^2 + B(n+1) + C = A(n^2+2n+1) + B(n+1) + C = An^2 + (2A+B)n + (A+B+C)$
+        </p>
+        <p>
+            これを $n^2 = -2(An^2+Bn+C) + (An^2 + (2A+B)n + (A+B+C))$ に代入し、整理します。
+        </p>
+        <div class="equation-box">
+            $$ n^2 = (-2A+A)n^2 + (-2B+2A+B)n + (-2C+A+B+C) $$
+            $$ 1 \cdot n^2 + 0 \cdot n + 0 = -An^2 + (2A-B)n + (A+B-C) $$
+        </div>
+        <p>
+            これが $n$ についての恒等式になるように、両辺の係数を比較します。
+        </p>
+        <ul>
+            <li>$n^2$ の係数: $1 = -A \implies \boldsymbol{A = -1}$</li>
+            <li>$n$ の係数: $0 = 2A-B \implies B = 2A = 2(-1) \implies \boldsymbol{B = -2}$</li>
+            <li>定数項: $0 = A+B-C \implies C = A+B = -1 + (-2) \implies \boldsymbol{C = -3}$</li>
+        </ul>
+        <p>
+            したがって、補助的な数列は $b_n = -n^2 - 2n - 3$ となります。
+        </p>
+    
+        <h2>4. 等比数列への変形</h2>
+        <p>
+            上で求めた $b_n$ を使うと、元の漸化式は次のように変形できます。
+        </p>
+        <div class="equation-box">
+            $$ a_{n+1} - b_{n+1} = 2(a_n - b_n) $$
+        </div>
+        <p>
+            $b_n = -n^2 - 2n - 3$ を代入すると、
+        </p>
+        <div class="equation-box">
+            $$ a_{n+1} - (-(n+1)^2 - 2(n+1) - 3) = 2(a_n - (-n^2 - 2n - 3)) $$
+            $$ a_{n+1} + (n+1)^2 + 2(n+1) + 3 = 2(a_n + n^2 + 2n + 3) $$
+        </div>
+        <p>
+            ここで、新しい数列 $c_n = a_n + n^2 + 2n + 3$ とおくと、漸化式は $c_{n+1} = 2c_n$ となります。これは、公比が $2$ の等比数列です。
+        </p>
+    
+        <h2>5. 一般項の導出</h2>
+        <h3>5.1. 数列 {$c_n$} の一般項</h3>
+        <p>
+            数列 {$c_n$} の初項 $c_1$ を求めます。
+        </p>
+        <div class="equation-box">
+            $$ c_1 = a_1 + 1^2 + 2(1) + 3 $$
+        </div>
+        <p>
+            問題の条件から $a_1=1$ なので、
+        </p>
+        <div class="equation-box">
+            $$ c_1 = 1 + 1 + 2 + 3 = 7 $$
+        </div>
+        <p>
+            したがって、初項 $7$、公比 $2$ の等比数列 {$c_n$} の一般項は、
+        </p>
+        <div class="equation-box">
+            $$ c_n = c_1 \cdot 2^{n-1} = 7 \cdot 2^{n-1} $$
+        </div>
+    
+        <h3>5.2. 数列 {$a_n$} の一般項</h3>
+        <p>
+            最後に、$c_n = a_n + n^2 + 2n + 3$ の関係から、$a_n$ の一般項を求めます。
+        </p>
+        <div class="equation-box">
+            $$ a_n = c_n - (n^2 + 2n + 3) $$
+        </div>
+        <p>
+            $c_n = 7 \cdot 2^{n-1}$ を代入して、最終的な答えが得られます。
+        </p>
+        <div class="conclusion">
+            <strong>一般項</strong>
+            $$ a_n = 7 \cdot 2^{n-1} - n^2 - 2n - 3 $$
+        </div>
+    
+        <h2>6. 検算</h2>
+        <p>
+            求めた一般項が正しいか、$n=1$ と $n=2$ で確認してみましょう。
+        </p>
+        <ul>
+            <li>
+                <strong>$n=1$ のとき:</strong><br>
+                $a_1 = 7 \cdot 2^{1-1} - 1^2 - 2(1) - 3 = 7 \cdot 2^0 - 1 - 2 - 3 = 7 \cdot 1 - 6 = 1$<br>
+                これは問題の条件 $a_1=1$ と一致します。
+            </li>
+            <li>
+                <strong>$n=2$ のとき:</strong><br>
+                元の漸化式から: $a_2 = 2a_1 + 1^2 = 2(1) + 1 = 3$<br>
+                求めた一般項から: $a_2 = 7 \cdot 2^{2-1} - 2^2 - 2(2) - 3 = 7 \cdot 2 - 4 - 4 - 3 = 14 - 11 = 3$<br>
+                両者は一致します。
+            </li>
+        </ul>
+        <p>
+            以上より、求めた一般項は正しいと考えられます。
+        </p>
     </div>
-    <p>
-        この式は、$a_{n+1} = p a_n + f(n)$ の形をしています。ここで $p=2$、$f(n)=n^2$ です。$f(n)$ が $n$ の2次式である点がポイントです。
-    </p>
-
-    <h2>2. 解法の基本方針</h2>
-    <p>
-        このタイプの漸化式は、うまい変形によって、基本的な「等比数列型」の漸化式 $c_{n+1} = r \cdot c_n$ に持ち込むのが定石です。
-    </p>
-    <p>
-        $a_{n+1} = 2a_n + n^2$ の右辺の $n^2$ が厄介なので、これを打ち消すような補助的な数列を考えます。$f(n)=n^2$ が $n$ の2次式なので、補助的な数列として、$n$ の2次式 $b_n = An^2+Bn+C$ を仮定し、$a_{n+1} - b_{n+1} = 2(a_n - b_n)$ という形を目指します。
-    </p>
-
-    <h2>3. 補助的な数列 $b_n$ の決定</h2>
-    <p>
-        まず、$a_{n+1} = 2a_n + n^2$ と、目標の形 $a_{n+1} - b_{n+1} = 2(a_n - b_n)$ すなわち $a_{n+1} = 2a_n - 2b_n + b_{n+1}$ を比較します。
-    </p>
-    <p>
-        両方の式の $a_{n+1}$ と $2a_n$ は共通なので、残りの部分が等しくなればよいことがわかります。
-    </p>
-    <div class="equation-box">
-        $$ n^2 = -2b_n + b_{n+1} $$
-    </div>
-    <p>
-        ここに、$b_n = An^2+Bn+C$ を代入して、係数 $A, B, C$ を求めます。
-    </p>
-    <p>
-        $b_{n+1} = A(n+1)^2 + B(n+1) + C = A(n^2+2n+1) + B(n+1) + C = An^2 + (2A+B)n + (A+B+C)$
-    </p>
-    <p>
-        これを $n^2 = -2(An^2+Bn+C) + (An^2 + (2A+B)n + (A+B+C))$ に代入し、整理します。
-    </p>
-    <div class="equation-box">
-        $$ n^2 = (-2A+A)n^2 + (-2B+2A+B)n + (-2C+A+B+C) $$
-        $$ 1 \cdot n^2 + 0 \cdot n + 0 = -An^2 + (2A-B)n + (A+B-C) $$
-    </div>
-    <p>
-        これが $n$ についての恒等式になるように、両辺の係数を比較します。
-    </p>
-    <ul>
-        <li>$n^2$ の係数: $1 = -A \implies \boldsymbol{A = -1}$</li>
-        <li>$n$ の係数: $0 = 2A-B \implies B = 2A = 2(-1) \implies \boldsymbol{B = -2}$</li>
-        <li>定数項: $0 = A+B-C \implies C = A+B = -1 + (-2) \implies \boldsymbol{C = -3}$</li>
-    </ul>
-    <p>
-        したがって、補助的な数列は $b_n = -n^2 - 2n - 3$ となります。
-    </p>
-
-    <h2>4. 等比数列への変形</h2>
-    <p>
-        上で求めた $b_n$ を使うと、元の漸化式は次のように変形できます。
-    </p>
-    <div class="equation-box">
-        $$ a_{n+1} - b_{n+1} = 2(a_n - b_n) $$
-    </div>
-    <p>
-        $b_n = -n^2 - 2n - 3$ を代入すると、
-    </p>
-    <div class="equation-box">
-        $$ a_{n+1} - (-(n+1)^2 - 2(n+1) - 3) = 2(a_n - (-n^2 - 2n - 3)) $$
-        $$ a_{n+1} + (n+1)^2 + 2(n+1) + 3 = 2(a_n + n^2 + 2n + 3) $$
-    </div>
-    <p>
-        ここで、新しい数列 $c_n = a_n + n^2 + 2n + 3$ とおくと、漸化式は $c_{n+1} = 2c_n$ となります。これは、公比が $2$ の等比数列です。
-    </p>
-
-    <h2>5. 一般項の導出</h2>
-    <h3>5.1. 数列 {$c_n$} の一般項</h3>
-    <p>
-        数列 {$c_n$} の初項 $c_1$ を求めます。
-    </p>
-    <div class="equation-box">
-        $$ c_1 = a_1 + 1^2 + 2(1) + 3 $$
-    </div>
-    <p>
-        問題の条件から $a_1=1$ なので、
-    </p>
-    <div class="equation-box">
-        $$ c_1 = 1 + 1 + 2 + 3 = 7 $$
-    </div>
-    <p>
-        したがって、初項 $7$、公比 $2$ の等比数列 {$c_n$} の一般項は、
-    </p>
-    <div class="equation-box">
-        $$ c_n = c_1 \cdot 2^{n-1} = 7 \cdot 2^{n-1} $$
-    </div>
-
-    <h3>5.2. 数列 {$a_n$} の一般項</h3>
-    <p>
-        最後に、$c_n = a_n + n^2 + 2n + 3$ の関係から、$a_n$ の一般項を求めます。
-    </p>
-    <div class="equation-box">
-        $$ a_n = c_n - (n^2 + 2n + 3) $$
-    </div>
-    <p>
-        $c_n = 7 \cdot 2^{n-1}$ を代入して、最終的な答えが得られます。
-    </p>
-    <div class="conclusion">
-        <strong>一般項</strong>
-        $$ a_n = 7 \cdot 2^{n-1} - n^2 - 2n - 3 $$
-    </div>
-
-    <h2>6. 検算</h2>
-    <p>
-        求めた一般項が正しいか、$n=1$ と $n=2$ で確認してみましょう。
-    </p>
-    <ul>
-        <li>
-            <strong>$n=1$ のとき:</strong><br>
-            $a_1 = 7 \cdot 2^{1-1} - 1^2 - 2(1) - 3 = 7 \cdot 2^0 - 1 - 2 - 3 = 7 \cdot 1 - 6 = 1$<br>
-            これは問題の条件 $a_1=1$ と一致します。
-        </li>
-        <li>
-            <strong>$n=2$ のとき:</strong><br>
-            元の漸化式から: $a_2 = 2a_1 + 1^2 = 2(1) + 1 = 3$<br>
-            求めた一般項から: $a_2 = 7 \cdot 2^{2-1} - 2^2 - 2(2) - 3 = 7 \cdot 2 - 4 - 4 - 3 = 14 - 11 = 3$<br>
-            両者は一致します。
-        </li>
-    </ul>
-    <p>
-        以上より、求めた一般項は正しいと考えられます。
-    </p>
-</div>
-
-</body>
+    <script>
+      // ページ内のすべてのh2タグを取得
+      const h2Elements = document.querySelectorAll('h2');
+    
+      // 各h2タグをループ処理
+      h2Elements.forEach((h2, index) => {
+        // インデックスは0から始まるので、1を加えて連番にする
+        const number = index + 1;
+    
+        // h2タグの既存のコンテンツの前に番号を追加
+        // 新しい<span>要素を作成して追加することで、既存のコンテンツを保持しつつ番号を表示
+        const numberSpan = document.createElement('span');
+        numberSpan.classList.add('h2-number'); // CSSでスタイリングするためのクラスを追加
+        numberSpan.textContent = `${number}.`; // 例: "1.", "2." のように表示
+    
+        // h2タグの先頭に作成した<span>要素を追加
+        h2.prepend(numberSpan);
+      });
+    </script>
+  </body>
 </html>
