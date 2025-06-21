@@ -152,12 +152,12 @@
         </p>
     </div>
     <script>
-        // ページ内のすべてのH2タグとPタグを含む要素をドキュメント順に取得します
-        // これにより、H2の後にPが続くような構造に対応しやすくなります。
-        const allContentElements = document.querySelectorAll('h2, p');
+        // ページ内のすべてのH2タグとh3タグを含む要素をドキュメント順に取得します
+        // これにより、H2の後にh3が続くような構造に対応しやすくなります。
+        const allContentElements = document.querySelectorAll('h2, h3');
 
         let currentH2Section = 0; // 現在のH2セクション番号
-        let paragraphInCurrentSection = 0; // 現在のH2セクション内のPタグの数
+        let paragraphInCurrentSection = 0; // 現在のH2セクション内のh3タグの数
 
         allContentElements.forEach(element => {
             if (element.tagName === 'H2') {
@@ -171,8 +171,8 @@
                 h2NumberSpan.textContent = `${currentH2Section}. `;
                 element.prepend(h2NumberSpan);
 
-            } else if (element.tagName === 'P') {
-                // Pタグが見つかったら、現在のセクション内の段落数をインクリメント
+            } else if (element.tagName === 'h3') {
+                // h3タグが見つかったら、現在のセクション内の段落数をインクリメント
                 paragraphInCurrentSection++;
 
                 // 表示する番号の文字列を作成 (例: "1-1.", "1-2.", "2-1.")
@@ -183,7 +183,7 @@
                 numberSpan.classList.add('paragraph-number'); // CSSでスタイリングするためのクラスを追加
                 numberSpan.textContent = fullNumber;
 
-                // Pタグの先頭に作成した<span>要素を追加
+                // h3タグの先頭に作成した<span>要素を追加
                 element.prepend(numberSpan);
             }
         });
