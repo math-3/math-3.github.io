@@ -27,13 +27,23 @@ h2 {
     font-size: 1.6em;
     margin-top: 40px;
 }
-.h2-number {
-    margin-right: 5px; /* 番号と既存テキストの間にスペース */
 }
 h3 {
     font-size: 1.2em;
     border-bottom: 1px solid #ccc;
     margin-top: 30px;
+.section-number {
+    font-weight: bold;
+    color: #8b0000; /* セクション番号の色 */
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+.paragraph-number {
+    font-weight: bold;
+    color: #006400; /* 段落番号の色 */
+    margin-right: 5px;
+    font-size: 0.9em;
+}
 }
 p {
     margin-bottom: 1em;
