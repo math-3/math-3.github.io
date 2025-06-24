@@ -15,17 +15,16 @@
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body>
-		<div id="quiz-container">
-			<h2>秘密のウェブサイトへようこそ！</h2>
-			<p>このサイトを閲覧するには、以下のクイズに正解してください。</p>
-			<p>質問：日本の首都はどこですか？</p>
-			<input type="text" id="quiz-answer" placeholder="回答を入力してください">
-			<button onclick="checkAnswer()">回答する</button>
-			<p id="quiz-message" class="message"></p>
-		</div>
-
-		<div id="content-container">
-				<div class="content">
+		<div class="content">
+			<div id="quiz-container">
+				<h2>秘密のウェブサイトへようこそ！</h2>
+				<p>このサイトを閲覧するには、以下のクイズに正解してください。</p>
+				<p>質問：日本の首都はどこですか？</p>
+				<input type="text" id="quiz-answer" placeholder="回答を入力してください">
+				<button onclick="checkAnswer()">回答する</button>
+				<p id="quiz-message" class="message"></p>
+			</div>
+			<div id="content-container">				
 				<h1>漸化式『 $ a_1 = 1 $ , $ a_{n+1}=2a_n+n^2$ 』の解き方</h1>
 				<p>
 					このページでは、右辺に $n$ の式が含まれる非同次線形漸化式の代表的な問題である
