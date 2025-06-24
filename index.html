@@ -15,234 +15,300 @@
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	</head>
 	<body>
-		<div class="content">
-			<h1>漸化式『 $ a_1 = 1 $ , $ a_{n+1}=2a_n+n^2$ 』の解き方</h1>
-      		<p>
-				このページでは、右辺に $n$ の式が含まれる非同次線形漸化式の代表的な問題である
-				 $a_1=1, a_{n+1}=2a_n+n^2$ の一般項 $a_n$ を求める方法を、ステップバイステップで解説します。</p>
-			<p>まず、解くべき漸化式を確認します。</p>
-			<div class="equation-box">
-				<div class="equation-container">
-					<div class="grid-table">	
-						<div class="grid-cell"></div>
-						<div class="grid-cell">$ a_1 = $</div>
-						<div class="grid-cell" style="text-align: left;">$ \,\, 1 $</div>
-						<div class="grid-cell"></div>
-						<div class="grid-cell"></div>
-						<div class="grid-cell"></div>
-						<div class="grid-cell"></div>
-						
-						<div class="grid-cell"></div>
-						<div class="grid-cell">$ a_{n+1} = $</div>
-						<div class="grid-cell">$ \,\, 2a_n + n^2 $</div>
-						<div class="grid-cell"></div>
-						<div class="grid-cell"></div>
-						<div class="grid-cell"></div>
-						<div class="grid-cell">・・・①</div>
+		<div id="quiz-container">
+			<h2>秘密のウェブサイトへようこそ！</h2>
+			<p>このサイトを閲覧するには、以下のクイズに正解してください。</p>
+			<p>質問：日本の首都はどこですか？</p>
+			<input type="text" id="quiz-answer" placeholder="回答を入力してください">
+			<button onclick="checkAnswer()">回答する</button>
+			<p id="quiz-message" class="message"></p>
+		</div>
+
+		<div id="content-container">
+				<div class="content">
+				<h1>漸化式『 $ a_1 = 1 $ , $ a_{n+1}=2a_n+n^2$ 』の解き方</h1>
+				<p>
+					このページでは、右辺に $n$ の式が含まれる非同次線形漸化式の代表的な問題である
+					$a_1=1, a_{n+1}=2a_n+n^2$ の一般項 $a_n$ を求める方法を、ステップバイステップで解説します。</p>
+				<p>まず、解くべき漸化式を確認します。</p>
+				<div class="equation-box">
+					<div class="equation-container">
+						<div class="grid-table">	
+							<div class="grid-cell"></div>
+							<div class="grid-cell">$ a_1 = $</div>
+							<div class="grid-cell" style="text-align: left;">$ \,\, 1 $</div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell"></div>
+							
+							<div class="grid-cell"></div>
+							<div class="grid-cell">$ a_{n+1} = $</div>
+							<div class="grid-cell">$ \,\, 2a_n + n^2 $</div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell">・・・①</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<p>
-				この式は、$a_{n+1} = p(定数)\,\,×\,\, a_n + f(n) $ の形をしています。
-				ここでは、 $p=2$、$f(n)=n^2$ です。$f(n)$ が $n$ の2次式である点がポイントです。
-			</p>
+				<p>
+					この式は、$a_{n+1} = p(定数)\,\,×\,\, a_n + f(n) $ の形をしています。
+					ここでは、 $p=2$、$f(n)=n^2$ です。$f(n)$ が $n$ の2次式である点がポイントです。
+				</p>
 
-			<h2> 解法</h2>
-			<p>
-				このタイプの漸化式は、 $a_{n+1} = p a_n + f(n)$ の右辺の $f(n)$ が厄介なので、
-				この部分が<strong>定数</strong>になるような形を目指します。
-				しかし、いきなり定数に直すのは難しいので、まずは、$n^2$が<strong>一次式</strong>の形になるようにします。
-				 $f(n)$ が $n$ の $m$ 次式( $m \in \mathbb{N}$ )の場合、 $f(n)$ の次数を下げるには、
-				 { $a_{n+1}-a_n$ }についての漸化式を考えればよいということが知られています。
-			</p>
-			<p> $n$ を $n+1$ に置き換えると、</p>
-			<div class="equation-box">
-				<div class="grid-table">	
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ a_{n+2} = $</div>
-					<div class="grid-cell" style="text-align: left;">$ \,\, 2a_{n+1} + (n+1)^2 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
+				<h2> 解法</h2>
+				<p>
+					このタイプの漸化式は、 $a_{n+1} = p a_n + f(n)$ の右辺の $f(n)$ が厄介なので、
+					この部分が<strong>定数</strong>になるような形を目指します。
+					しかし、いきなり定数に直すのは難しいので、まずは、$n^2$が<strong>一次式</strong>の形になるようにします。
+					$f(n)$ が $n$ の $m$ 次式( $m \in \mathbb{N}$ )の場合、 $f(n)$ の次数を下げるには、
+					{ $a_{n+1}-a_n$ }についての漸化式を考えればよいということが知られています。
+				</p>
+				<p> $n$ を $n+1$ に置き換えると、</p>
+				<div class="equation-box">
+					<div class="grid-table">	
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ a_{n+2} = $</div>
+						<div class="grid-cell" style="text-align: left;">$ \,\, 2a_{n+1} + (n+1)^2 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
 
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ ∴ \,\, a_{n+2} = $</div>
-					<div class="grid-cell" style="text-align: left;">$ \,\, 2a_{n+1} + n^2 + 2n + 1 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">・・・②</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ ∴ \,\, a_{n+2} = $</div>
+						<div class="grid-cell" style="text-align: left;">$ \,\, 2a_{n+1} + n^2 + 2n + 1 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">・・・②</div>
+					</div>
 				</div>
-			</div>
-			<p>②$-$①より、</p>
-			<div class="equation-box">
-				<div class="grid-table">
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ a_{n+2} = $</div>
-					<div class="grid-cell">$ 2a_{n+1} + $</div>
-					<div class="grid-cell">$ (n+1)^2 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000; display: grid; grid-template-columns: auto 1fr auto; width: 100%;"><div>$+)$</div><div>$ a_{n+1} = $</div></div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000;">$ 2a_n + $</div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000;">$ n^2 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ a_{n+2} - a_{n+1} = $</div>
-					<div class="grid-cell">$ \,\, 2 ( a_{n+1} - a_n ) + $</div>
-					<div class="grid-cell">$ 2n + 1 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">・・・③</div>
-				</div>
-				<!--
-				<table class="equation-table">
-					<tr>
-						<td></td><td>$ a_{n+2} = $</td><td>$ 2a_{n+1} + $</td><td>$ (n+1)^2 $</td>
-					</tr>
-					<tr>
-						<td>$+)$</td>
-						<td>$ a_{n+1} = $</td><td>$ 2a_n + $</td><td>$ n^2 $</td>
-					</tr>
-					<tr>
-						<td colspan="5"><div class="equation-line"></div></td>
-					</tr>
-					<tr>
-						<td></td><td>$ a_{n+2} - a_{n+1} = $</td><td>$ 2a_{n+1} - 2a_n + $</td><td>$ (n+1)^2 - n^2 $</td><td>$\,\,\,$</td>
-					</tr>
-				</table>
-				-->
-			</div>
-			<p>
-				ここで、漸化式を展開すると $ a_{n+2} - 3a_{n+1} 2a_n = 2n + 1 $ となり、
-				 $ a_n $ についての隣接3項間の漸化式を考えることになってしまいます。
-				なので、③のような形にすることで、｛ $a_{n+1}-a_n$ ｝についての
-				<strong>隣接2項間の漸化式</strong>を考えればよく、計算が楽になります。
-			</p>
-			<p>｛ $a_{n+1}-a_n$ ｝だと少しわかりにくいので、 $ b_n = a_{n+1} - a_n $ とすると、③より、</p>
+				<p>②$-$①より、</p>
 				<div class="equation-box">
 					<div class="grid-table">
 						<div class="grid-cell"></div>
-						<div class="grid-cell">$ b_{n+1} = $</div>
-						<div class="grid-cell">$ \,\, 2b_n + $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ a_{n+2} = $</div>
+						<div class="grid-cell">$ 2a_{n+1} + $</div>
+						<div class="grid-cell">$ (n+1)^2 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000; display: grid; grid-template-columns: auto 1fr auto; width: 100%;"><div>$+)$</div><div>$ a_{n+1} = $</div></div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000;">$ 2a_n + $</div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000;">$ n^2 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ a_{n+2} - a_{n+1} = $</div>
+						<div class="grid-cell">$ \,\, 2 ( a_{n+1} - a_n ) + $</div>
 						<div class="grid-cell">$ 2n + 1 $</div>
 						<div class="grid-cell"></div>
+						<div class="grid-cell">・・・③</div>
+					</div>
+					<!--
+					<table class="equation-table">
+						<tr>
+							<td></td><td>$ a_{n+2} = $</td><td>$ 2a_{n+1} + $</td><td>$ (n+1)^2 $</td>
+						</tr>
+						<tr>
+							<td>$+)$</td>
+							<td>$ a_{n+1} = $</td><td>$ 2a_n + $</td><td>$ n^2 $</td>
+						</tr>
+						<tr>
+							<td colspan="5"><div class="equation-line"></div></td>
+						</tr>
+						<tr>
+							<td></td><td>$ a_{n+2} - a_{n+1} = $</td><td>$ 2a_{n+1} - 2a_n + $</td><td>$ (n+1)^2 - n^2 $</td><td>$\,\,\,$</td>
+						</tr>
+					</table>
+					-->
+				</div>
+				<p>
+					ここで、漸化式を展開すると $ a_{n+2} - 3a_{n+1} 2a_n = 2n + 1 $ となり、
+					$ a_n $ についての隣接3項間の漸化式を考えることになってしまいます。
+					なので、③のような形にすることで、｛ $a_{n+1}-a_n$ ｝についての
+					<strong>隣接2項間の漸化式</strong>を考えればよく、計算が楽になります。
+				</p>
+				<p>｛ $a_{n+1}-a_n$ ｝だと少しわかりにくいので、 $ b_n = a_{n+1} - a_n $ とすると、③より、</p>
+					<div class="equation-box">
+						<div class="grid-table">
+							<div class="grid-cell"></div>
+							<div class="grid-cell">$ b_{n+1} = $</div>
+							<div class="grid-cell">$ \,\, 2b_n + $</div>
+							<div class="grid-cell">$ 2n + 1 $</div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell"></div>
+							<div class="grid-cell">・・・④</div>
+						</div>
+					</div>
+				<p>
+					前述の通り、あとは厄介な部分( $ 2 n + 1 $ )の次数を下げて定数にすればよいので、
+					同様にして、 $ n $ を $ n + 1 $ に置き換えて、
+				</p>
+				<div class="equation-box">
+					<div class="grid-table">
 						<div class="grid-cell"></div>
-						<div class="grid-cell">・・・④</div>
+						<div class="grid-cell">$ b_{n+2} = $</div>
+						<div class="grid-cell">$ \,\, 2b_{n+1} + $</div>
+						<div class="grid-cell">$ 2(n+1) + 1 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ ∴ \,\, b_{n+2} = $</div>
+						<div class="grid-cell">$ \,\, 2b_{n+1} + $</div>
+						<div class="grid-cell" style="text-align: left;">$ 2n + 3 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">・・・⑤</div>
 					</div>
 				</div>
-			<p>
-				前述の通り、あとは厄介な部分( $ 2 n + 1 $ )の次数を下げて定数にすればよいので、
-				同様にして、 $ n $ を $ n + 1 $ に置き換えて、
-			</p>
-			<div class="equation-box">
-				<div class="grid-table">
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ b_{n+2} = $</div>
-					<div class="grid-cell">$ \,\, 2b_{n+1} + $</div>
-					<div class="grid-cell">$ 2(n+1) + 1 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
+				<p>⑤ $ - $ ④より、</p>
+				<div class="equation-box">
+					<div class="grid-table">
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ b_{n+2} = $</div>
+						<div class="grid-cell">$ \,\, 2b_{n+1} + 2n + $</div>
+						<div class="grid-cell">$ 3 \,\, $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
 
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ ∴ \,\, b_{n+2} = $</div>
-					<div class="grid-cell">$ \,\, 2b_{n+1} + $</div>
-					<div class="grid-cell" style="text-align: left;">$ 2n + 3 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">・・・⑤</div>
-				</div>
-			</div>
-			<p>⑤ $ - $ ④より、</p>
-			<div class="equation-box">
-				<div class="grid-table">
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ b_{n+2} = $</div>
-					<div class="grid-cell">$ \,\, 2b_{n+1} + 2n + $</div>
-					<div class="grid-cell">$ 3 \,\, $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000;"></div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000; display: grid; grid-template-columns: auto 1fr auto; width: 100%;"><div>$+)$</div><div>$ b_{n+1} = $</div></div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000;">$ 2b_n + 2n + $</div>
+						<div class="grid-cell" style="border-bottom: 1px solid #000;">$ 1 \,\, $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
 
-					<div class="grid-cell"></div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000;"></div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000; display: grid; grid-template-columns: auto 1fr auto; width: 100%;"><div>$+)$</div><div>$ b_{n+1} = $</div></div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000;">$ 2b_n + 2n + $</div>
-					<div class="grid-cell" style="border-bottom: 1px solid #000;">$ 1 \,\, $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ b_{n+2} - b_{n+1} = $</div>
-					<div class="grid-cell">$ \, 2 ( b_{n+1} - b_n ) + $</div>
-					<div class="grid-cell">$ 2 \,\, $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ b_{n+2} - b_{n+1} = $</div>
+						<div class="grid-cell">$ \, 2 ( b_{n+1} - b_n ) + $</div>
+						<div class="grid-cell">$ 2 \,\, $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+					</div>
 				</div>
-			</div>
-			<p> $ c_n = b_{n+1} - b_n $ とすると、</p>
-			<div class="equation-box">
-				<div class="grid-table">
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ c_{n+1} = \, 2 c_n + 2 $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">・・・⑥</div>
+				<p> $ c_n = b_{n+1} - b_n $ とすると、</p>
+				<div class="equation-box">
+					<div class="grid-table">
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ c_{n+1} = \, 2 c_n + 2 $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">・・・⑥</div>
+					</div>
 				</div>
-			</div>
-			<p>
-				あとは簡単ですね。
-				特性方程式 $ \alpha = 2 \alpha + 2 $ をとくと、 $ \alpha = - 2 $ だから、
-				⑥を変形すると、
-			</p>
-			<div class="equation-box">
-				<div class="grid-table">
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">$ c_{n+1} - 2 = 2 \,\, ( c_n - 2 ) $</div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell"></div>
-					<div class="grid-cell">・・・⑦</div>
+				<p>
+					あとは簡単ですね。
+					特性方程式 $ \alpha = 2 \alpha + 2 $ をとくと、 $ \alpha = - 2 $ だから、
+					⑥を変形すると、
+				</p>
+				<div class="equation-box">
+					<div class="grid-table">
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">$ c_{n+1} - 2 = 2 \,\, ( c_n - 2 ) $</div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell"></div>
+						<div class="grid-cell">・・・⑦</div>
+					</div>
 				</div>
+				<p>あとはもうわかりますよね😊</p>
+				<p>ってことで、なんやかんや計算すると、</p>
+				<div class="conclusion">
+					<strong>一般項</strong>
+					$$ a_n = 7 \cdot 2^{n-1} - n^2 - 2n - 3 $$
+				</div>
+				<h2>検算</h2>
+				<p>
+					求めた一般項が正しいか、$n=1$ と $n=2$ で確認してみましょう。
+				</p>
+				<ul>
+					<li>
+						<strong>$n=1$ のとき:</strong><br>
+						$a_1 = 7 \cdot 2^{1-1} - 1^2 - 2(1) - 3 = 7 \cdot 2^0 - 1 - 2 - 3 = 7 \cdot 1 - 6 = 1$<br>
+						これは問題の条件 $a_1=1$ と一致します。
+					</li>
+					<li>
+						<strong>$n=2$ のとき:</strong><br>
+						元の漸化式から: $a_2 = 2a_1 + 1^2 = 2(1) + 1 = 3$<br>
+						求めた一般項から: $a_2 = 7 \cdot 2^{2-1} - 2^2 - 2(2) - 3 = 7 \cdot 2 - 4 - 4 - 3 = 14 - 11 = 3$<br>
+						両者は一致します。
+					</li>
+				</ul>
+				<p>
+					以上より、求めた一般項は正しいと考えられます。
+				</p>
 			</div>
-			<p>あとはもうわかりますよね😊</p>
-			<p>ってことで、なんやかんや計算すると、</p>
-			<div class="conclusion">
-				<strong>一般項</strong>
-				$$ a_n = 7 \cdot 2^{n-1} - n^2 - 2n - 3 $$
-			</div>
-			<h2>検算</h2>
-			<p>
-				求めた一般項が正しいか、$n=1$ と $n=2$ で確認してみましょう。
-			</p>
-			<ul>
-				<li>
-					<strong>$n=1$ のとき:</strong><br>
-					$a_1 = 7 \cdot 2^{1-1} - 1^2 - 2(1) - 3 = 7 \cdot 2^0 - 1 - 2 - 3 = 7 \cdot 1 - 6 = 1$<br>
-					これは問題の条件 $a_1=1$ と一致します。
-				</li>
-				<li>
-					<strong>$n=2$ のとき:</strong><br>
-					元の漸化式から: $a_2 = 2a_1 + 1^2 = 2(1) + 1 = 3$<br>
-					求めた一般項から: $a_2 = 7 \cdot 2^{2-1} - 2^2 - 2(2) - 3 = 7 \cdot 2 - 4 - 4 - 3 = 14 - 11 = 3$<br>
-					両者は一致します。
-				</li>
-			</ul>
-			<p>
-				以上より、求めた一般項は正しいと考えられます。
-			</p>
+			<button onclick="logout()">ログアウト</button>
 		</div>
+
+		<script>
+			const quizContainer = document.getElementById('quiz-container');
+			const contentContainer = document.getElementById('content-container');
+			const quizAnswerInput = document.getElementById('quiz-answer');
+			const quizMessage = document.getElementById('quiz-message');
+
+			const correctAnswer = "東京"; // 正しい回答
+
+			// ページロード時に認証状態をチェック
+			window.onload = function() {
+				if (sessionStorage.getItem('authenticated') === 'true') {
+					showContent();
+				} else {
+					showQuiz();
+				}
+			};
+
+			function checkAnswer() {
+				const userAnswer = quizAnswerInput.value.trim(); // 前後の空白を削除
+
+				if (userAnswer === correctAnswer) {
+					sessionStorage.setItem('authenticated', 'true'); // セッションストレージに認証フラグを保存
+					showContent();
+				} else {
+					quizMessage.textContent = '不正解です。もう一度お試しください。';
+					quizMessage.className = 'message error';
+					quizAnswerInput.value = ''; // 回答をクリア
+				}
+			}
+
+			function showQuiz() {
+				quizContainer.style.display = 'block';
+				contentContainer.style.display = 'none';
+				quizMessage.textContent = '';
+				quizAnswerInput.value = '';
+			}
+
+			function showContent() {
+				quizContainer.style.display = 'none';
+				contentContainer.style.display = 'block';
+			}
+
+			function logout() {
+				sessionStorage.removeItem('authenticated'); // 認証フラグを削除
+				showQuiz();
+				alert('ログアウトしました。再度アクセスするにはクイズに正解してください。');
+			}
+		</script>
+
+
+
+		
+		
 	</body>
 </html>
