@@ -18,8 +18,7 @@
 		<div class="content">
 			<div id="quiz-container">
 				<h2>秘密のウェブサイトへようこそ！</h2>
-				<p>このサイトを閲覧するには、以下のクイズに正解してください。</p>
-				<p>質問：日本の首都はどこですか？</p>
+				<p>このサイトを閲覧するには、パスワードを入力してください。</p>
 				<input type="text" id="quiz-answer" placeholder="回答を入力してください">
 				<button onclick="checkAnswer()">回答する</button>
 				<p id="quiz-message" class="message"></p>
@@ -262,7 +261,7 @@
 			const quizAnswerInput = document.getElementById('quiz-answer');
 			const quizMessage = document.getElementById('quiz-message');
 
-			const correctAnswer = "東京"; // 正しい回答
+			const correctAnswer = "3178"; // 正しい回答
 
 			// ページロード時に認証状態をチェック
 			window.onload = function() {
