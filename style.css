@@ -16,7 +16,7 @@ body {
 }
 h1, h2, h3 {
     color: #345;
-    border-bottom: 2px solid #39d;
+    border-bottom: 5px solid #39d;
     padding-bottom: 10px;
 }
 h1 {
@@ -123,12 +123,41 @@ HTMLからダミーの要素を削除し、このスタイルも不要になり�
 
 .conclusion {
     background-color: #eef;
-    border: 2px solid #39d;
+    border: 5px solid #39d;
     padding: 20px;
     margin-top: 30px;
     text-align: center;
     font-size: 1.2em;
     border-radius: 8px;
+}
+
+#quiz-container {
+    display: block; /* 初期状態ではクイズを表示 */
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+#content-container {
+    display: none; /* 初期状態ではコンテンツを非表示 */
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    background-color: #e9f5ff;
+}
+.message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+.error {
+    color: red;
+}
+.success {
+    color: green;
 }
 
 
