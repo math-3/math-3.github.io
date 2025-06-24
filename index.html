@@ -273,6 +273,17 @@
 				}
 			};
 
+			// 回答入力欄にイベントリスナーを追加
+			quizAnswerInput.addEventListener('keydown', function(event) {
+				// Enterキーが押されたかをチェック (EnterキーのkeyCodeは13)
+				if (event.keyCode === 13) {
+					// デフォルトのEnterキーの動作（フォーム送信など）を防ぐ
+					event.preventDefault();
+					// 回答チェック関数を呼び出す
+					checkAnswer();
+				}
+			});
+
 			function checkAnswer() {
 				const userAnswer = quizAnswerInput.value.trim(); // 前後の空白を削除
 
@@ -304,10 +315,10 @@
 				alert('ログアウトしました。再度アクセスするにはクイズに正解してください。');
 			}
 		</script>
-
-
-
-		
-		
+		<!--
+		認証状態を保存する sessionStorage.setItem('authenticated', 'true'); 
+		と sessionStorage.getItem('authenticated') の部分を削除します。
+		これにより、クイズに正解してもその状態がブラウザに記憶されないため、
+		ページを再読み込みするたびにクイズが表示されるようになります。-->
 	</body>
 </html>
