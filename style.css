@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
 }
-.container {
+.content {
     max-width: 800px;
     margin: 20px auto;
     padding: 25px;
@@ -15,8 +15,8 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 h1, h2, h3 {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+    color: #345;
+    border-bottom: 5px solid #39d;
     padding-bottom: 10px;
 }
 h1 {
@@ -27,47 +27,132 @@ h2 {
     font-size: 1.6em;
     margin-top: 40px;
 }
-}
-h3 {
-    font-size: 1.2em;
-    border-bottom: 1px solid #ccc;
-    margin-top: 30px;
-.section-number {
-    font-weight: bold;
-    color: #8b0000; /* セクション番号の色 */
-    margin-right: 5px;
-    font-size: 0.9em;
-}
-.paragraph-number {
-    font-weight: bold;
-    color: #006400; /* 段落番号の色 */
-    margin-right: 5px;
-    font-size: 0.9em;
-}
-}
-p {
-    margin-bottom: 1em;
-}
 .equation-box {
-    background-color: #eaf2f8;
-    border-left: 5px solid #3498db;
+    background-color: #eef;
+    border-left: 5px solid #39d;
     padding: 15px;
     margin: 20px 0;
     border-radius: 5px;
     overflow-x: auto;
 }
+.math-with-text {
+	display: flex; /* Flexbox を使用して要素を横並びにする */
+	align-items: center; /* 垂直方向の中央揃え */
+	white-space: nowrap; /* テキストの折り返しを防ぐ */
+}
+.equation {
+	margin-right: 5px; /* 式とテキストの間に少しスペースを開ける */
+}
+.equation-container {
+    display: flex; /* Flexbox を有効にする */
+    justify-content: center; /* 子要素を水平方向で中央揃えにする */
+    align-items: center; /* 子要素を垂直方向で中央揃えにする (必要に応じて) */
+    width: 100%; /* 親要素の幅を100%にする */
+    position: relative; /* 子要素の絶対位置指定の基準にする */
+    margin-bottom: 0px; /* 必要に応じて下部の余白を追加 */
+}
+
+.equation-table {
+    border-collapse: collapse; 
+    margin:0 auto
+}
+.equation-table td{
+    text-align: right;
+}
+/* 横棒のスタイル調整 */
+.equation-line {
+    border-bottom: 1px solid black;
+    height: 1px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+.grid-table {
+    display: grid;
+    /* * 列の定義の変更点:
+        * 1fr:    左側の空きスペース（残りのスペースを埋める）
+        * auto:   1列目 (コンテンツ幅に合わせる)
+        * auto:   2列目 (コンテンツ幅に合わせる)
+        * auto:   3列目 (コンテンツ幅に合わせる)
+        * auto:   4列目 (コンテンツ幅に合わせる)
+        * 1fr:    右側の空きスペース（残りのスペースを埋める）
+        * 120px:  6列目（右端に配置したい価格列）の固定幅
+        */
+    grid-template-columns: 1fr auto auto auto auto 1fr auto;
+    width: 100%; /* グリッド全体を親要素の幅いっぱいに広げる */
+    max-width: 1000px; /* 必要に応じて最大幅を設定 */
+    margin: 0 auto; /* グリッドコンテナ自体を水平方向の中央に寄せる */
+    align-items: center;
+}
+
+.grid-cell {
+    text-align: right; /* デフォルトは中央揃え */
+    white-space: nowrap; /* テキストの折り返しを防ぐ（コンテンツ幅維持のため） */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ヘッダのスタイル */
+.grid-header {
+    font-weight: bold;
+    background-color: #e9e9e9;
+}
+
+/* 6列目（右端に配置したい価格列）のテキストを右揃え */
+/* grid-template-columnsの7番目の定義に該当する要素 */
+.grid-header:nth-child(7),
+.grid-cell:nth-child(7n) { /* 7nは7番目、14番目、21番目...の要素を選択 */
+    text-align: right;
+}
+
+/* ----------------------------------------------------- */
+/* 空きスペース用セルのスタイル（CSS Gridでは不要になる） */
+/* ----------------------------------------------------- */
+/*
+以前は空のdivを入れていましたが、
+grid-template-columnsの1fr部分が自動的に空きスペースになるため、
+HTMLからダミーの要素を削除し、このスタイルも不要になります。
+もし、デザイン上の理由で境界線などが必要なら、スタイルを定義してください。
+*/
+/* .grid-cell.spacer, .grid-header.spacer {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+} */
+
 .conclusion {
-    background-color: #e8f6f3;
-    border: 2px solid #1abc9c;
+    background-color: #eef;
+    border: 5px solid #39d;
     padding: 20px;
     margin-top: 30px;
     text-align: center;
     font-size: 1.2em;
     border-radius: 8px;
 }
-code {
-    background-color: #ecf0f1;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-family: 'Courier New', Courier, monospace;
+
+
+/* レスポンシブ対応：画面幅が狭い場合 */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column; /* 縦並びに変更 */
+        height: auto; /* 高さを自動調整 */
+        width: 100vw; /* 幅を100%にする */
+        border-radius: 0; /* 角の丸みをなくす */
+    }
+
+    .section {
+        width: 100%; /* 幅を100%にする */
+        height: 50vh; /* 各セクションの高さを画面の半分に（任意で調整） */
+        flex-shrink: 0; /* 縮小しない */
+        border-bottom: 1px solid #eee; /* 縦並びの区切り線 */
+    }
+
+    .resizer {
+        display: none; /* スマホ表示時は区切り線を非表示にする */
+    }
+
+    .right-section {
+        border-bottom: none; /* 最後のセクションの下線は不要 */
+    }
 }
