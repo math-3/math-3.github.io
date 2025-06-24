@@ -290,7 +290,7 @@
 					sessionStorage.setItem('authenticated', 'true'); // セッションストレージに認証フラグを保存
 					showContent();
 				} else {
-					quizMessage.textContent = '不正解です。もう一度お試しください。';
+					quizMessage.textContent = 'パスワードが違います。もう一度お試しください。';
 					quizMessage.className = 'message error';
 					quizAnswerInput.value = ''; // 回答をクリア
 				}
@@ -311,7 +311,7 @@
 			function logout() {
 				sessionStorage.removeItem('authenticated'); // 認証フラグを削除
 				showQuiz();
-				alert('ログアウトしました。再度アクセスするにはクイズに正解してください。');
+				alert('ログアウトしました。再度アクセスするにはパスワードを入力してください。');
 			}
 		</script>
 		<!--
