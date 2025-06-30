@@ -8,6 +8,7 @@ body {
 }
 .content {
     max-width: 800px;
+    min-width: none;
     margin: 20px auto;
     padding: 25px;
     background-color: #fff;
@@ -88,7 +89,7 @@ h2 {
 
 .grid-cell {
     text-align: right; /* デフォルトは中央揃え */
-    white-space: nowrap; /* テキストの折り返しを防ぐ（コンテンツ幅維持のため） */
+    /*white-space: nowrap; /* テキストの折り返しを防ぐ（コンテンツ幅維持のため） */
     overflow: hidden;
     text-overflow: ellipsis;
 }
